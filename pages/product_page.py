@@ -17,3 +17,10 @@ class ProductPage(BasePage):
         cost_of_product = self.browser.find_element(*ProductPageLocators.COST_OF_PRODUCT)
         cost_of_basket_from_message = self.browser.find_element(*ProductPageLocators.COST_OF_BASKET_FROM_MESSAGE)
         assert cost_of_product.text == cost_of_basket_from_message.text, "Стоимость корзины не равна стоимости добавленного товара"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "Появилось подтверждающее сообщение, которого не должно быть"
+
+    def element_should_disappered(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "Не исчез элемент, который должен был исчезнуть"
+    
