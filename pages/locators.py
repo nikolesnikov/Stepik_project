@@ -18,3 +18,4 @@ class ProductPageLocators():
 
 class BasketPageLocators():
     EMPTY_BASKET_MESSAGE = (By.CSS_SELECTOR, "#content_inner p")
+    BASKET_ITEM_BLOCK = (By.ID, "basket_formset")
