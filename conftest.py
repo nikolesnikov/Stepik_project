@@ -8,14 +8,18 @@ def pytest_addoption(parser):
     parser.addoption('--language', action='store', default="en", help="Choose language")
 
 @pytest.fixture(scope="function")
-def browser(request):
-    print("\nstart browser for test..")
-    user_language = request.config.getoption("language")
+def browser():
     options = Options()
-    options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
+    #options.set_capability('goog:loggingPrefs', {'performance': 'ALL'})
+    #options.add_argument("--auto-open-devtools-for-tabs")
+    #options.add_argument("--incognito")
+    #options.add_argument('--proxy-server=%s' % 'http://ppod-proxy.ftc.ru:3128')
+    options.add_argument("--headless=new")
+    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
     options.add_experimental_option('excludeSwitches', ['enable-automation'])
-    service = Service(executable_path='C:/chromedriver/chromedriver.exe')
-    browser = webdriver.Chrome(service=service, options=options)
+    #service = Service(executable_path='./tools/chromedriver.exe')
+    browser = webdriver.Chrome(options=options)
     yield browser
-    print("\nquit browser..")
-    browser.quit()
+    browser.quit() 

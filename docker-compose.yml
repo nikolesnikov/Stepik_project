@@ -1,0 +1,10 @@
+services:
+  regression:
+    image: "frankescobar/allure-docker-service"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/workspace
+    command: /bin/sh -c "ls -la && pytest -m "login" -sv --alluredir=allure-results"
+    working_dir: /usr/workspace

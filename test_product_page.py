@@ -4,6 +4,8 @@ from pages.product_page import ProductPage
 from pages.login_page import LoginPage
 from pages.basket_page import BasketPage
 
+import allure
+
 @pytest.mark.parametrize('links', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
                                    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
                                    "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2",
@@ -72,6 +74,7 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     basket_page.basket_dont_have_items()
     basket_page.basket_should_be_empty()
 
+@allure.feature('заголовок')
 @pytest.mark.login
 class TestUserAddToBasketFromProductPage():
     @pytest.fixture(scope="function", autouse=True)
